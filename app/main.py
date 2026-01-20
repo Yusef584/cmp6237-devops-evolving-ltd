@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from Evolving Ltd - deployed automatically with DevOps!"
+    return "Hello from Evolving Ltd - trigger cl pipeline automatically"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
