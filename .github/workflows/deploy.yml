@@ -19,20 +19,19 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
-         script: |
-  set -e
-  cd /home/ubuntu/app
+          script: |
+            set -e
+            cd /home/ubuntu/app
 
-  # ALWAYS get latest code from GitHub main
-  git fetch origin main
-  git reset --hard origin/main
+            # ALWAYS get latest code from GitHub main
+            git fetch origin main
+            git reset --hard origin/main
 
-  # Build from the folder that contains the Dockerfile (app/)
-  cd app
+            # Build from the folder that contains the Dockerfile (app/)
+            cd app
 
-  docker build --no-cache -t app:new .
-  docker stop app || true
-  docker rm app || true
-  docker tag app:new app
-  docker run -d -p 5000:5000 --name app app
-
+            docker build --no-cache -t app:new .
+            docker stop app || true
+            docker rm app || true
+            docker tag app:new app
+            docker run -d -p 5000:5000 --name app app
